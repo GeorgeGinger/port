@@ -55,8 +55,12 @@ products.forEach((product, index) => {
 
 document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 
+
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
+    // toto se stane kdyz kliknu na Add to cart
+
    const productId = button.dataset.productId;
    
   //  vyulovani matchingItem pri kliknuti na Add to cart
@@ -71,18 +75,27 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
    });
 
    if(matchingItem) {
-    // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.guantity zvetsi o 1
-    matchingItem.guantity += 1;
+    // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.quantity zvetsi o 1
+    matchingItem.quantity += 1;
    }else {
       cart.push({
         productId: productId,
-        guantity: 1
+        quantity: 1
       });
    }
 
-  
-   
+  //  vynulovani quantity pred spocitanim
+   let cartQuantity = 0;
+   cart.forEach((item) => {
+    cartQuantity += item.quantity;
+   });
+
    console.log(cart);
+   console.log(cartQuantity);
+
+   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+  //  end event listener
   });
 
 });
