@@ -58,10 +58,29 @@ document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
    const productName = button.dataset.productName;
-   cart.push({
-    productName: productName,
-    guantity: 1
+   
+   let matchingItem;
+
+  // prohledani kosiku zdali v nem pridavany produkt uz je
+   cart.forEach((item) => {
+    if(productName === item.productName) {
+      // ulozime refelenci item do matchingItem
+      matchingItem = item;
+    }
    });
+
+   if(matchingItem) {
+    // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.guantity zvetsi o 1
+    matchingItem.guantity += 1;
+   }else {
+      cart.push({
+        productName: productName,
+        guantity: 1
+      });
+   }
+
+  
+   
    console.log(cart);
   });
 
