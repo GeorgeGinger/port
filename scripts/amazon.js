@@ -47,7 +47,7 @@ products.forEach((product, index) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>`;
@@ -57,13 +57,14 @@ document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
-   const productName = button.dataset.productName;
+   const productId = button.dataset.productId;
    
+  //  vyulovani matchingItem pri kliknuti na Add to cart
    let matchingItem;
 
   // prohledani kosiku zdali v nem pridavany produkt uz je
    cart.forEach((item) => {
-    if(productName === item.productName) {
+    if(productId === item.productId) {
       // ulozime refelenci item do matchingItem
       matchingItem = item;
     }
@@ -74,7 +75,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     matchingItem.guantity += 1;
    }else {
       cart.push({
-        productName: productName,
+        productId: productId,
         guantity: 1
       });
    }
