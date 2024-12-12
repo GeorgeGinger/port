@@ -1,3 +1,5 @@
+import {cart} from '../data/cart.js';
+
 
 let priductsHTML = '';
 
@@ -26,7 +28,7 @@ products.forEach((product, index) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -42,7 +44,7 @@ products.forEach((product, index) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -55,14 +57,38 @@ products.forEach((product, index) => {
 
 document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 
-
+let timeOut = false;
+let timeOutId;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+
+ 
+
   button.addEventListener('click', () => {
     // toto se stane kdyz kliknu na Add to cart
 
-   const productId = button.dataset.productId;
+   const { productId } = button.dataset;
    
+   quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+
+   messageElement = document.querySelector(`.js-added-to-cart-${productId}`);
+
+   messageElement.classList.add('added-to-cart-visible');
+
+// vymazani minule pusteneho timeoutu aby mohlo dojit k vy
+  if(timeOut == true) {
+    clearTimeout(timeOutId);
+    timeOut = false;
+  }
+
+  if(timeOut == false) {
+    timeOutId = setTimeout(() => {
+      timeOut = true;
+      messageElement.classList.remove('added-to-cart-visible');
+    }, 3000);
+  }
+
+
   //  vyulovani matchingItem pri kliknuti na Add to cart
    let matchingItem;
 
@@ -76,11 +102,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
    if(matchingItem) {
     // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.quantity zvetsi o 1
-    matchingItem.quantity += 1;
+    matchingItem.quantity += quantity;
    }else {
       cart.push({
-        productId: productId,
-        quantity: 1
+        productId,
+        quantity
       });
    }
 
@@ -89,14 +115,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
    cart.forEach((item) => {
     cartQuantity += item.quantity;
    });
-
-   console.log(cart);
-   console.log(cartQuantity);
-
+   
    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
   //  end event listener
   });
 
 });
+
 
