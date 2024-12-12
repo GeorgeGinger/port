@@ -1,9 +1,10 @@
+import {products} from '../data/products.js';
 import {cart} from '../data/cart.js';
 
 
 let priductsHTML = '';
 
-products.forEach((product, index) => {
+products.forEach((product) => {
 	 priductsHTML += `
 		<div class="product-container">
           <div class="product-image-container">
