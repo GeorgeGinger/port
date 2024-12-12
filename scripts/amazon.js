@@ -1,6 +1,5 @@
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
-import {cart} from '../data/cart.js';
-
 
 let priductsHTML = '';
 
@@ -61,22 +60,23 @@ document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 let timeOut = false;
 let timeOutId;
 
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+function updateCartQuantity() {
+  //  vynulovani quantity pred spocitanim
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
- 
+}
 
-  button.addEventListener('click', () => {
-    // toto se stane kdyz kliknu na Add to cart
+function addAddedMsg(productId) {
+  const messageElement = document.querySelector(`.js-added-to-cart-${productId}`);
 
-   const { productId } = button.dataset;
-   
-   quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+  messageElement.classList.add('added-to-cart-visible');
 
-   messageElement = document.querySelector(`.js-added-to-cart-${productId}`);
-
-   messageElement.classList.add('added-to-cart-visible');
-
-// vymazani minule pusteneho timeoutu aby mohlo dojit k vy
+  // vymazani minule pusteneho timeoutu aby mohlo dojit k vy
   if(timeOut == true) {
     clearTimeout(timeOutId);
     timeOut = false;
@@ -86,42 +86,22 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     timeOutId = setTimeout(() => {
       timeOut = true;
       messageElement.classList.remove('added-to-cart-visible');
-    }, 3000);
+    }, 2000);
   }
+}
 
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    // toto se stane kdyz kliknu na Add to cart
 
-  //  vyulovani matchingItem pri kliknuti na Add to cart
-   let matchingItem;
+  const { productId } = button.dataset;
 
-  // prohledani kosiku zdali v nem pridavany produkt uz je
-   cart.forEach((item) => {
-    if(productId === item.productId) {
-      // ulozime refelenci item do matchingItem
-      matchingItem = item;
-    }
-   });
-
-   if(matchingItem) {
-    // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.quantity zvetsi o 1
-    matchingItem.quantity += quantity;
-   }else {
-      cart.push({
-        productId,
-        quantity
-      });
-   }
-
-  //  vynulovani quantity pred spocitanim
-   let cartQuantity = 0;
-   cart.forEach((item) => {
-    cartQuantity += item.quantity;
-   });
-   
-   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
+  addAddedMsg(productId);
+  addToCart(productId);
+  updateCartQuantity();
+ 
   //  end event listener
   });
-
 });
 
 
