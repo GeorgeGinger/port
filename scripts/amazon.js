@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, updateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -61,16 +61,12 @@ document.querySelector('.js-product-grid').innerHTML = priductsHTML;
 let timeOut = false;
 let timeOutId;
 
-function updateCartQuantity() {
-  //  vynulovani quantity pred spocitanim
-  let cartQuantity = 0;
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-  });
-  
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
+function displayCartQuantity() {
+   document.querySelector('.js-cart-quantity').innerHTML = updateCartQuantity();
 }
+
+displayCartQuantity();
+
 
 function addAddedMsg(productId) {
   const messageElement = document.querySelector(`.js-added-to-cart-${productId}`);
@@ -98,8 +94,10 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   const { productId } = button.dataset;
 
   addAddedMsg(productId);
-  addToCart(productId);
-  updateCartQuantity();
+
+  const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+  addToCart(productId , quantity);
+  displayCartQuantity();
  
   //  end event listener
   });

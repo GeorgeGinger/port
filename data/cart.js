@@ -12,12 +12,10 @@ export function saveToStorage() {
 	localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-export function addToCart(productId) {
+export function addToCart(productId, quantity) {
   
 	//  vyulovani matchingItem pri kliknuti na Add to cart
 	let matchingItem;
-  
-	const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
   
 	// prohledani kosiku zdali v nem pridavany produkt uz je
 	 cart.forEach((cartItem) => {
@@ -30,6 +28,32 @@ export function addToCart(productId) {
 	 if(matchingItem) {
 	  // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.quantity zvetsi o 1
 	  matchingItem.quantity += quantity;
+	 }else {
+		cart.push({
+		  productId,
+		  quantity
+		});
+	 }
+
+	 saveToStorage();
+  }
+
+export function editQuantityItem(productId, quantity) {
+  
+	//  vyulovani matchingItem pri kliknuti na Add to cart
+	let matchingItem;
+  
+	// prohledani kosiku zdali v nem pridavany produkt uz je
+	 cart.forEach((cartItem) => {
+	  if(productId === cartItem.productId) {
+		// ulozime refelenci item do matchingItem
+		matchingItem = cartItem;
+	  }
+	 });
+  
+	 if(matchingItem) {
+	  // protoze matchingItem a item odkazuji na stejne pole v pameti matchingItemm.quantity++ znamena ze i item.quantity zvetsi o 1
+	  matchingItem.quantity = quantity;
 	 }else {
 		cart.push({
 		  productId,
@@ -53,3 +77,13 @@ export function addToCart(productId) {
 
 	  saveToStorage();
   }
+
+  export function updateCartQuantity() {
+		//  vynulovani quantity pred spocitanim
+		let cartQuantity = 0;
+		cart.forEach((cartItem) => {
+		cartQuantity += cartItem.quantity;
+		});
+
+		return cartQuantity;
+	}
