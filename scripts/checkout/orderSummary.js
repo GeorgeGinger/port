@@ -144,6 +144,7 @@ export function renderOrderSummary() {
 
       container.remove();
       displayCartQuantity();
+      renderPaymentSummary();
     });
   }); 
 
@@ -172,7 +173,7 @@ export function renderOrderSummary() {
         displayCartQuantity();
         // aktualizaca mnozstvi u danne polozky
         document.querySelector(`.js-quantity-label-${productId}`).innerHTML = quantity;
-        renderPaymentSummary()
+        renderPaymentSummary();
     });
   });
 
@@ -181,6 +182,7 @@ export function renderOrderSummary() {
       const {productId, deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 
