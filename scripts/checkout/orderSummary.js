@@ -1,8 +1,9 @@
 // named export
 import {cart, removeFromCart, updateCartQuantity, editQuantityItem, updateDeliveryOption} from '../../data/cart.js';
-import {products} from '../../data/products.js';
+import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
-import {deliveryOptions} from '../../data/deliveryoptions.js'
+import {deliveryOptions, getDeliveryOption} from '../../data/deliveryoptions.js'
+import {renderPaymentSummary} from './paymentSummary.js'
 // default export esm library
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
@@ -15,29 +16,18 @@ export function renderOrderSummary() {
   cart.forEach((cartItem) => {
 
     const productId = cartItem.productId;
+    const matchingProduct = getProduct(productId);
+    const deliveryOptionId = cartItem.deliveryOptionId;
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-    let matchingProduct;
-
-    products.forEach((product) => {
-      
-      if(product.id === productId) {
-        matchingProduct = product;
-      }
-    });
-
-    let deliveryDate;
     const today = dayjs();
-
-    deliveryOptions.forEach((deliveryOption) => {
-      if(deliveryOption.id === cartItem.deliveryOptionId) {
-        deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-      }
-    })
-
-    
-    const dateString = deliveryDate.format('dddd, MMMM D');
-
-
+    const deliveryDate = today.add(
+      deliveryOption.deliveryDays,
+      'days'
+    );
+    const dateString = deliveryDate.format(
+      'dddd, MMMM D'
+    );
 
     cartSummaryHTML +=
     `
@@ -109,8 +99,7 @@ export function renderOrderSummary() {
       const priceString = deliveryOption.priceCents 
       === 0 
       ? 'FREE' 
-      : `${formatCurrency(deliveryOption.priceCents / 100)}`;
-
+      : `${formatCurrency(deliveryOption.priceCents)}`;
 
       const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
       
@@ -155,7 +144,6 @@ export function renderOrderSummary() {
 
       container.remove();
       displayCartQuantity();
-      
     });
   }); 
 
@@ -184,6 +172,7 @@ export function renderOrderSummary() {
         displayCartQuantity();
         // aktualizaca mnozstvi u danne polozky
         document.querySelector(`.js-quantity-label-${productId}`).innerHTML = quantity;
+        renderPaymentSummary()
     });
   });
 
