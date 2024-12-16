@@ -4,17 +4,25 @@ import {loadFromStorage, cart} from '../../data/cart.js';
 
 describe('Test suite: renderOrderSummary', () => {
 
-	// test vzhledu stranky
-	it('displays the cart', () => {
-		const testContainer = document.querySelector('.js-test-container');
+	// nektere promenna jsme museli kvuli scope definovat pred funkcemi
+	const productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
+	const productId2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
+	let testContainer = '';
+
+	// funkce ktera probehne pred kazdym testem
+	beforeEach(() => {
+		spyOn(localStorage, 'setItem');
+
+		// test container vytvoreny v tests.html
+		testContainer = document.querySelector('.js-test-container');
+		// vytvoreni elementu ktere testovany kod vyzaduje ale nevytvari
 		testContainer.innerHTML = 
 		`
-		<div class="js-order-summary"></div>
-		<div class="js-return-to-home-link"></div>
+			<div class="js-order-summary"></div>
+			<div class="js-return-to-home-link"></div>
+			<div class="js-payment-summary"></div>
 		`;
 
-		const productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
-		const productId2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
 		spyOn(localStorage, 'getItem').and.callFake(() => {
 			return JSON.stringify([{
 				productId: productId1,
@@ -29,9 +37,10 @@ describe('Test suite: renderOrderSummary', () => {
 		// nacteni cart z prazdneho localStorage
 		loadFromStorage();
 
-		console.log(JSON.parse(localStorage.getItem('cart')));
-
 		renderOrderSummary();
+	});
+	// test vzhledu stranky
+	it('displays the cart', () => {
 
 		expect(
 			document.querySelectorAll('.js-cart-item-container').length
@@ -49,34 +58,6 @@ describe('Test suite: renderOrderSummary', () => {
 	});
 
 	it('removes a product',() => {
-
-		spyOn(localStorage, 'setItem');
-
-		const testContainer = document.querySelector('.js-test-container');
-		testContainer.innerHTML = 
-		`
-			<div class="js-order-summary"></div>
-			<div class="js-return-to-home-link"></div>
-			<div class="js-payment-summary"></div>
-		`;
-
-		const productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
-		const productId2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
-		spyOn(localStorage, 'getItem').and.callFake(() => {
-			return JSON.stringify([{
-				productId: productId1,
-				quantity: 2,
-				deliveryOptionId: '2'
-			},{
-				productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-				quantity: 10,
-				deliveryOptionId: '1'
-			}]);
-		});
-		// nacteni cart z prazdneho localStorage
-		loadFromStorage();
-
-		renderOrderSummary();
 
 		// vymazeme product 1
 		document.querySelector(`.js-delete-link-${productId1}`).click();
@@ -106,6 +87,7 @@ describe('Test suite: renderOrderSummary', () => {
 			cart[0].productId
 		).toEqual(productId2);
 
+		// vymazani textu ktery se zobrazuje pred vysledky testu
 		testContainer.innerHTML = '';
 	});
 });
