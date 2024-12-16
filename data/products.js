@@ -62,6 +62,44 @@ class Clothing extends Product{
   }
 }
 
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleDateString());
+*/
+
+/*
+console.log(this);
+const object2 = {
+  a: 2,
+  // v tomto okamziku je this undefined protoze object neni jeste vytvoren
+  b: this.a
+}
+*/
+
+/*
+function logThis() {
+  console.log(this);
+}
+
+logThis();
+// call premeni this uvnitr fce na cokoli chceme
+logThis.call('hello');
+*/
+
+// arrow fce neumi menit hodnotu this
+// this si drzi hodnotu kterou melo mimo arrow function
+/*
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+}
+  */
+
+// vypise undefined protoze this melo pred fci hodnotu udefined 
+object3.method();
+
 // map() pro kazdy element pole se zpusti fce a vyslodek je ulozen zpet do pole
 // pole plne novych instanci clasy product
 export const products = [
