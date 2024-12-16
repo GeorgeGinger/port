@@ -17,8 +17,6 @@ describe('test suite: addToCard',() => {
 		// nacteni cart z prazdneho localStorage
 		loadFromStorage();
 
-		console.log(localStorage.getItem('cart'));
-
 		addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6', 1);
 		expect(cart.length).toEqual(1);
 		// spocita kolikrat byla dana metoda volana musi byt predtim magt wdth spyOn
