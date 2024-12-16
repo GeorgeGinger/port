@@ -11,6 +11,7 @@ describe('Test suite: renderOrderSummary', () => {
 
 	// funkce ktera probehne pred kazdym testem
 	beforeEach(() => {
+		// mock a function
 		spyOn(localStorage, 'setItem');
 
 		// test container vytvoreny v tests.html
