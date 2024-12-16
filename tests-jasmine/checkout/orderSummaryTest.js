@@ -39,6 +39,12 @@ describe('Test suite: renderOrderSummary', () => {
 
 		renderOrderSummary();
 	});
+
+	afterEach(() => {
+		// vymazani textu ktery se zobrazuje pred vysledky testu
+		testContainer.innerHTML = '';
+	});
+
 	// test vzhledu stranky
 	it('displays the cart', () => {
 
@@ -53,8 +59,7 @@ describe('Test suite: renderOrderSummary', () => {
 		document.querySelector(`.js-product-quantity-${productId2}`).innerText
 		).toContain('Quantity: 10');
 
-		// vymazani textu ktery se zobrazuje pred vysledky testu
-		testContainer.innerHTML = '';
+		
 	});
 
 	it('removes a product',() => {
@@ -87,7 +92,5 @@ describe('Test suite: renderOrderSummary', () => {
 			cart[0].productId
 		).toEqual(productId2);
 
-		// vymazani textu ktery se zobrazuje pred vysledky testu
-		testContainer.innerHTML = '';
 	});
 });
