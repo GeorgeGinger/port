@@ -128,11 +128,11 @@ object3.method();
 
 export let products = [];
 
-function loadProducts() {
+export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', () => {
-    console.log(JSON.parse(xhr.response));
+    // console.log(JSON.parse(xhr.response));
 
     products = JSON.parse(xhr.response).map((productDetails) => {
       if(productDetails.type === 'clothing')  {
@@ -144,16 +144,17 @@ function loadProducts() {
         return new Product(productDetails);
       }
     });
-
+    // console.log(products);
     console.log('load products');
 
+    fun();
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
 
-loadProducts();
+// loadProducts();
 
 // map() pro kazdy element pole se zpusti fce a vysledek je ulozen zpet do pole
 // pole plne novych instanci clasy product
@@ -842,4 +843,3 @@ export const products = [
 });
 */
 
-console.log(products);
