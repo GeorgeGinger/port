@@ -126,8 +126,38 @@ const object3 = {
 object3.method();
 */
 
-// map() pro kazdy element pole se zpusti fce a vyslodek je ulozen zpet do pole
+export let products = [];
+
+function loadProducts() {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(JSON.parse(xhr.response));
+
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if(productDetails.type === 'clothing')  {
+        return new Clothing(productDetails);
+      } else
+      if(productDetails.type === 'appliance') {
+        return new Appliance(productDetails);
+      }else {
+        return new Product(productDetails);
+      }
+    });
+
+    console.log('load products');
+
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}
+
+loadProducts();
+
+// map() pro kazdy element pole se zpusti fce a vysledek je ulozen zpet do pole
 // pole plne novych instanci clasy product
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -810,5 +840,6 @@ export const products = [
   }
 
 });
+*/
 
-// console.log(products);
+console.log(products);
