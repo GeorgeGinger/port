@@ -135,7 +135,7 @@ export function loadProductsFetch() {
   ).then((response) => {
     return response.json();
   }).then((productsData) => {
-    
+
     // console.log(productsData);
 
     products = productsData.map((productDetails) => {
@@ -182,6 +182,10 @@ export function loadProducts(fun) {
     console.log('load products');
 
     fun();
+  });
+
+  xhr.addEventListener('error', (error) => {
+    console.log('Unxepected error. Please try again later.', error)
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
