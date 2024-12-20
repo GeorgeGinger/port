@@ -21,13 +21,9 @@ async function loadPage() {
 
 	renderOrderSummary();
 	renderPaymentSummary();
-
-	return 'value3';
 }
 
-loadPage().then((value) => {
-	console.log('next step:', value);
-});
+loadPage();
 
 /*
 Promise.all([
