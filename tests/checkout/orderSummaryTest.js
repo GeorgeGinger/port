@@ -1,6 +1,6 @@
 import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 import {loadFromStorage, cart} from '../../data/cart.js';
-import {loadProducts} from '../../data/products.js';
+import {loadProducts, loadProductsFetch} from '../../data/products.js';
 
 
 describe('Test suite: renderOrderSummary', () => {
@@ -12,7 +12,7 @@ describe('Test suite: renderOrderSummary', () => {
 
 	// done je fce ktera zpusobi ze se v kodu bude pokracovat a  se kompletne nacte
 	beforeAll((done) => {
-		loadProducts(() => {
+		loadProductsFetch().then(() => {
 			done();
 		});
 		
