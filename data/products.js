@@ -151,10 +151,13 @@ export function loadProductsFetch() {
     // console.log(products);
     console.log('load products');
 
+  }).catch((error) => {
+    console.log('Unxepected error. Please try again later.', error);
   });
 
   return promise;
 }
+
 
 /*
 loadProductsFetch().then(() => {
