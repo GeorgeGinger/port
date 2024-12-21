@@ -17,9 +17,11 @@ async function loadPage() {
 		// awayt muzeme pouzivat pouze uvnitr async function
 		await loadProductsFetch();
 
-		const value = await new Promise((resolve) => {
-			throw 'error promise'
+		const value = await new Promise((resolve, reject) => {
+			// throw 'error promise';
 			loadCart(() => {
+				
+			// reject('error reject');
 			resolve('value3');
 			});
 		})
