@@ -78,5 +78,6 @@ export function renderPaymentSummary() {
 			console.log('Unexpected in error fetch orders. Try again later');
 		}
 
+		window.location.href = 'orders.html';
 	});
 }
