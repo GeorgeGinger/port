@@ -12,12 +12,13 @@ async function loadPage() {
 	try {
 
 		// error si muzeme vytvorit throw vyhodi error prerusi provadeni try vetve a catch error zachyti
-		// throw 'error';
+		// throw 'error try';
 
 		// awayt muzeme pouzivat pouze uvnitr async function
 		await loadProductsFetch();
 
 		const value = await new Promise((resolve) => {
+			throw 'error promise'
 			loadCart(() => {
 			resolve('value3');
 			});
