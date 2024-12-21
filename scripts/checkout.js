@@ -9,15 +9,23 @@ import {loadCart} from '../data/cart.js';
 
 
 async function loadPage() {
+	try {
 
-	// awayt muzeme pouzivat pouze uvnitr async function
-	await loadProductsFetch();
+		// error si muzeme vytvorit throw vyhodi error prerusi provadeni try vetve a catch error zachyti
+		// throw 'error';
 
-	const value = await new Promise((resolve) => {
-		loadCart(() => {
-		resolve('value3');
-		});
-	})
+		// awayt muzeme pouzivat pouze uvnitr async function
+		await loadProductsFetch();
+
+		const value = await new Promise((resolve) => {
+			loadCart(() => {
+			resolve('value3');
+			});
+		})
+	} catch(error) {
+		console.log('Unxepected error. Please try again later.', error);
+	}
+	
 
 	renderOrderSummary();
 	renderPaymentSummary();
