@@ -1,0 +1,8 @@
+.kontakt {
+	display: flex;
+    justify-content: center;
+}
+
+.kontakt .ramecek {
+	width: 80%;
+}

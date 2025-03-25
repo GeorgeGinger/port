@@ -1,0 +1,41 @@
+footer h2 {
+	margin: 40px 0 0;
+}
+
+.kontakty {
+	display: flex;
+	justify-content: center;
+}
+.kontakty .container{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	text-align: center;
+}
+
+footer .kontaktyTop a:hover {
+	border-bottom: 2px solid black;
+}
+
+.soc {
+	font-size: 50px;
+}
+
+.fa-facebook:hover {
+	color: #1877F2;
+}
+
+.fa-instagram:hover {
+	color: #1DA1F2;
+}
+
+.kontakty p {
+	margin: 10px 0;
+}
+.kontakty p i {
+	margin-right: 20px;
+}
+
+.kontakty .soc {
+	margin: 10px 0;
+}

@@ -1,0 +1,91 @@
+
+header {
+	background-image: url(../img/uvodnifoto.gif);
+	background-size: cover;
+	color: white;
+	text-shadow: 0.15em 0.15em 0px black;
+	border-radius: 1em;
+	margin: .8em 0.8em 0.8em;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+header a {
+	color: white;
+}
+
+header a:hover {
+	border-bottom: 2px solid white;
+}
+
+.rozdeleni{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.headerTop {
+ display: flex;
+ justify-content: center;
+ font-size: 1.5em;
+}
+
+.headerTop .container {
+	display: flex;
+	justify-content: space-between;
+	padding: 1em 0.5em 0;
+}
+
+.headerMidl {
+	display: flex;
+	justify-content: center;
+	padding: 1em 0;
+}
+.headerMidl h2 {
+	font-weight: 700;
+	font-size: 4em;
+	padding: 0.3em 0.3em;
+	
+
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+}
+nav .container {
+	display: flex;
+	justify-content: right;
+	
+}
+nav .container menu {
+	margin: 0 0 10px;
+	
+}
+nav a {
+	padding: 0 8px;
+	font-size: 2em;
+}
+
+
+@media (max-width: 730px) {
+.headerMidl {
+	font-size: 2vw;
+}
+}
+
+@media (max-width: 500px) {
+	header {
+		font-size: 3vw;
+	}
+	.headerTop {
+		font-size: 1em;
+	}
+
+	nav .container menu{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+}
