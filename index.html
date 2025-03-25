@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS Data</title>
+
+	<style>
+		body {
+			font-family: verdana;
+			font-size: 13px;
+			box-sizing: border-box;
+		}
+
+		input {
+			position: absolute;
+			margin: 0px;
+			padding-left: 5px;
+			top: -1px;
+			left: -1px;
+		}
+
+
+		.buttonOn {
+			background-color: green;
+		}
+
+		.buttonOff {
+			background-color: red;
+		}
+
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+
+		}
+
+		.table th {
+			background-color: #eee;
+			padding: 5px;
+			border: solid thin #ddd;
+		}
+
+		.table td {
+			border: solid thin #ddd;
+			padding: 5px;
+		}
+
+		.hide {
+			display: none;
+		}
+
+		.showElement {
+			border: solid 2px blue;
+		}
+
+		td.selected {
+			border: solid 2px blue;
+			/* position: relative; */
+		}
+
+		.js-sub-menu>div:hover {
+			background-color: #12499d;
+			color: white;
+		}
+
+		.js-sub-menu>div {
+			padding: 6px;
+			background-color: #ddd;
+			margin-bottom: 2px;
+			text-align: center;
+			cursor: pointer;
+			transition: all .3s ease;
+		}
+
+		.js-sub-menu {
+			width: 150px;
+			min-height: 100px;
+			background-color: #eee;
+			box-shadow: 0px 0px 6px #aaa;
+			position: absolute;
+			left: 100px;
+			top: 200px;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.selected-cell{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.main-menu>div {
+			padding: 6px;
+			background-color: #ddd;
+			margin-bottom: 2px;
+			text-align: center;
+			cursor: pointer;
+			transition: all .3s ease;
+		}
+
+		.main-menu>div:hover {
+			background-color: #12499d;
+			color: white;
+		}
+
+		.main-menu > span {
+			padding: 10px;
+			background-color: #0b698e;
+			margin-bottom: 2px;
+			text-align: center;
+			display: block;
+			color: white;
+		}
+
+		.main-menu {
+			width: 150px;
+			min-height: 100px;
+			background-color: #eee;
+			box-shadow: 0px 0px 6px #aaa;
+			position: absolute;
+			right: 100px;
+			top: 50px;
+		}
+
+		.main-menu-button {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2 style="text-align: center;">Employees</h2>
+
+	<div class="nav">
+
+		<div class="selected-cell">
+			
+			<b>Selected Cell</b>
+			<div>
+				Row: <span class="js-row-info"></span>
+			</div>
+			<div>
+				Column: <span class="js-column-info"></span>
+			</div>
+			<div>
+				Column Name: <span class="js-column-name-info"></span>
+			</div>
+			<br>
+		</div>
+
+		
+		<div class="js-main-menu-button main-menu-button">
+			<svg width="54" height="54" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" ><path d="m21 4c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15zm12.5 10.75c0-.414-.336-.75-.75-.75h-8.5c-.414 0-.75.336-.75.75s.336.75.75.75h8.5c.414 0 .75-.336.75-.75zm0-3.248c0-.414-.336-.75-.75-.75h-8.5c-.414 0-.75.336-.75.75s.336.75.75.75h8.5c.414 0 .75-.336.75-.75zm0-3.252c0-.414-.336-.75-.75-.75h-8.5c-.414 0-.75.336-.75.75s.336.75.75.75h8.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+		</div>
+
+		<div id="js_maim_menu" class="js-main-menu main-menu hide">
+			<span>Main Menu</span>
+			<div onclick="colection_data()">Save Data</div>
+			<div onclick="send_data({data_type: 'read'})">Reload Data</div>
+			<div onclick="send_data({data_type: 'prepareNewEmployee'})">Add New Employee</div>
+			<div onclick="deleteRow()">Fired Employee</div>
+		</div>
+	</div>	
+
+	<table class="table">
+		<thead class="js-thead">
+			<tr>
+				<th>heading</th>
+				<th>heading</th>
+				<th>heading</th>
+				<th>heading</th>
+			</tr>
+		</thead>
+		<tbody class="js-tbody" ondblClick='edit(event)' onclick="">
+			<tr>
+				<td>heading</td>
+				<td>heading</td>
+				<td>heading</td>
+				<td>heading</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="js-input-holder">
+		<input type="text" value="" name="" style="width: 98%; height: 98%;" class="js-input hide">
+	</div>
+
+	<div class="js-sub-menu hide">
+		<div onclick="edit(event)">Edit</div>
+		<div onclick="delete_content()">Delete</div>
+
+	</div>
+
+	<button id="myButton">Hold Me!</button>
+
+	<button id="showElement" 
+		onclick="
+			show_element();
+			elementMove(); 
+			elementTouchMove();
+			" 
+		class="buttonOn">Move Element ON</button>
+
+</body>
+
+</html>
+
+<script src="main.js"></script>
+<script src="mobilClick.js"></script>
+<script src="moveObject.js"></script>
+<script src="ShowElement.js"></script>
+<script src="touchMoveObject.js"></script>
