@@ -1,4 +1,4 @@
-### Snaha trochu více pochopit js mě přinutila pokusit se vytvořit trochu složitější věc ve VUE  
+### Snaha trochu více pochopit js mě přinutila pokusit se vytvořit trochu složitější věc ve VUE
 
 Vymyslel jsem si projekt kde si budete moci :
 
