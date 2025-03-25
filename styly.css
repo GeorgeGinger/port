@@ -1,0 +1,15 @@
+.tlacitko{height: 90px; width: 150px; text-align: center; background-color: rgba(241, 161, 12, 0.993); padding-top: 60px;}
+.tlacitko_obsazenost{height: 90px; width: 180px; text-align: center; background-color: rgba(241, 161, 12, 0.993); padding-top: 60px;}
+.center{vertical-align: center; }
+.sizeodkazu{font-size: 2em;}
+.pismopatickanadpis{font-size: 3em;}
+.pismopaticka{font-size: 2.5em;}
+.pismo_tabulka_oteviracidoba{font-size: 1.5em;}
+body{background-color: lightyellow; color: black;}
+.tabulka_oteviracidoba{visibility: hidden; display: block;}
+li{
+	text-align: justify;
+}
+ul {
+	width: 50%;
+}
