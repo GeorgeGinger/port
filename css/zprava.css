@@ -1,0 +1,148 @@
+.zprava {
+	display: block;
+	flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.zprava h3 {
+	font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.obrazek_text img {
+	float: left;
+    margin-right: 1vw;
+}
+
+.zprava .nadpis {
+	display: block;
+}
+
+.zprava .content {
+	display: none;
+}
+
+.zprava.zobrazContent .content {
+	display: flex;
+}
+
+.zprava ul {
+    margin: auto;
+}
+
+.zprava ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: disc;
+    width: 90%;
+}
+
+.zprava ul li {
+    padding: 5px;
+}
+
+.kapitola {
+    margin: 0 3rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.darky {
+    background-color: rgb(244, 224, 198);
+     width: 100%;
+     border-radius: 1rem;
+}
+
+.zvyraznit {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content p {
+    line-height: 1.6;
+    
+}
+
+.kapitola p {
+    text-indent: 3ch;
+}
+
+.p-center p {
+    text-align: center;
+}
+
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.oteviraci_doba table {
+    border: solid 1px black;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.oteviraci_doba td {
+    padding: 0.5vw 1vw;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.cenik a {
+        border-radius: 0.2em;
+        background-color: hsla(0, 0%, 0%, 0.3);
+}
+.cenik a:hover {
+    border-bottom: 2px solid black;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+
+@media (max-width: 830px) {
+    .navod ul {
+        width: 90%;
+    }
+}
+
+@media (max-width: 730px) {
+    .cenik ol {
+        width: 90%;
+    }
+
+    .oteviraci_doba {
+        font-size: 1rem;
+    }
+
+    .navod {
+        font-size: 1rem;
+    }
+
+    .cenik {
+        font-size: 1rem;
+    }
+
+    .oteviraci_doba table {
+        width: 95%;
+        font-size: 1.5rem;
+    }
+
+    html {
+        font-size: 2.5vw;
+    }
+    
+}

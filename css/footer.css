@@ -1,0 +1,48 @@
+
+footer {
+	margin: 40px 0 0;
+}
+
+.kontakty {
+	display: flex;
+	justify-content: center;
+}
+.kontakty .container{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	text-align: center;
+}
+
+footer .kontaktyTop a:hover {
+	border-bottom: 2px solid black;
+}
+
+.soc {
+	font-size: 50px;
+}
+
+.fa-facebook {
+	transition: 0.2s ease-in-out;
+}
+.fa-facebook:hover {
+	color: #1877F2;
+}
+
+.fa-instagram {
+	transition: 0.2s ease-in-out;
+}
+.fa-instagram:hover {
+	color: #f26d1e;
+}
+
+.kontakty p {
+	margin: 0.3em 0;
+}
+.kontakty p i {
+	margin-right: 1em;
+}
+
+.kontakty .soc {
+	margin: 0.3em 0;
+}

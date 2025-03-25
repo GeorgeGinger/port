@@ -1,0 +1,96 @@
+@media(max-width: 700px) {
+	header .container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	header nav ul {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	header nav ul li a {
+		padding: 10px;
+	}
+
+	header .nadpis {
+		flex-direction: column;
+		font-size: 2vw;
+		margin-top: 20px;
+	}
+}
+
+@media(max-width: 950px) {
+	section > .domu .onas .boxy {
+		flex-direction: column;
+		row-gap: 10px;
+	}
+
+	section > .domu .onas .boxy .karta {
+		display: flex;
+		column-gap: 1em;
+	}
+	section > .domu .onas .boxy .karta h2 {
+		margin-top: 0;
+	}
+}
+
+@media(max-width: 550px) {
+	section > .domu .onas .boxy .karta {
+		display: block;
+	}
+
+	section > .domu .onas .boxy .karta h2 {
+		margin-top: 1em;
+	}
+}
+
+@media(max-width: 700px) {
+	section > .domu .akce .levy {
+		width: 80%;
+	}
+
+	section > .domu .akce .pravy {
+		width: 20%;
+	}
+}
+
+@media(max-width: 950px) {
+	section > .domu .tip .container {
+		flex-direction: column;
+		row-gap: 3em;
+		/* žruseni align items  */
+		align-items: initial;
+	}
+
+	section > .domu .tip .container .fotky {
+		justify-content: space-evenly;
+		
+	}
+}
+
+@media(max-width: 720px) {
+	section > .domu .tip .container .fotky img {
+		/* fotky se zacnou zmensovat musime zachovat pomer stran jako na puvodni fotce */
+				width: 40vw;
+				height: 60vw;
+				box-shadow: 2vw 2vw #805F49;
+			}
+}
+
+@media(max-width: 1000px) {
+	section > .nabidka .obsah .container .boxy .karta {
+		flex-direction: column;
+		row-gap: 2em;
+	}
+}
+@media(max-width: 550px) {
+	section > .nabidka .obsah .container .boxy .karta .obrazek img {
+		width: 95vw;
+		height: 63.27vw;
+	}
+
+	section > .nabidka .obsah .container .boxy .karta .obrazek h2 {
+		font-size: 3vw;
+	}
+}
