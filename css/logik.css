@@ -1,0 +1,165 @@
+body {
+	display: flex;
+	justify-content: center;
+	background-color: burlywood;
+}
+
+h1 {
+	text-align: center;
+}
+
+button {
+	width: 4rem;
+	height: 3rem;
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	align-self: center;
+	max-width: 500px;
+}
+
+.computer {
+	display: flex;
+	gap: 2vw;
+	margin-bottom: 1vw;
+}
+
+.computer-chose,
+.player-chose {
+	display: flex;
+	gap: 1vw;
+	padding: 0.5vw;
+	border: solid 1px black;
+}
+
+.find-colors {
+	position: absolute;
+	margin: auto;
+}
+
+.hide {
+	opacity: 0;
+}
+
+.nad-history {
+	display: flex;
+}
+
+.history {
+	padding: 0.5vw;
+	border: solid 1px black;
+	margin-bottom: 1vw;
+}
+
+.history-row {
+	display: flex;
+	gap: 1vw;
+	margin-bottom: 1vw;
+}
+
+.player-panel {
+	display: flex;
+	gap: 2vw;
+}
+
+.prouzek {
+	width: 16vw;
+	height: 0.5rem;
+	border: solid 3px black;
+}
+
+.prazdno {
+	background-color: white;
+	border: dotted 1px black;
+}
+
+.tecka {
+	width: 16vw;
+	height: 16vw;
+	cursor: pointer;
+	border: solid 3px black;
+}
+
+.nad-picker {
+	max-width: 200px;
+}
+
+.picker {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: 2vw;
+	row-gap: 2vw;
+	margin-top: 0.5vw;
+}
+
+.picker > .tecka {
+	width: 15vw;
+	height: 15vw;
+	cursor: pointer;
+	border: solid 3px black;
+}
+
+.clicked {
+	border: dotted 3px black;
+}
+
+.end {
+	text-align: center;
+	font-size: xx-large;
+}
+
+.hide-end {
+	display: none;
+}
+
+.red {
+	background-color: red;
+}
+.green {
+	background-color: green;
+}
+.yellow {
+	background-color: yellow;
+}
+.purple {
+	background-color: purple;
+}
+.black {
+	background-color: black;
+}
+.blue {
+	background-color: blue;
+}
+.orange {
+	background-color: orange;
+}
+.pink {
+	background-color: pink;
+}
+.white {
+	background-color: white;
+	
+}
+
+@media (min-width: 500px) {
+	.prouzek {
+		width: 5rem;
+	}
+
+
+	.tecka {
+		width: 5rem;
+		height: 5rem;
+	}
+
+	.picker > .tecka {
+		width: 4rem;
+		height: 4rem;
+	}
+}

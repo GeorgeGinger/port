@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Logik</title>
+
+	<link rel="stylesheet" href="./css/logik.css">
+
+</head>
+<body>
+
+	<div class="container">
+		<h1>Logik</h1>
+
+		<div class="computer">
+			<div class="computer-chose js-computer-chose">
+			</div>
+		</div>
+		<button class="js-zamichat-button">Mix</button>
+	
+		<div class="nad-history js-nad-history">
+			
+		</div>
+	
+
+		<div class="player-panel">
+			<div class="player-chose js-player-chose"></div>
+		</div>
+
+		<div class="js-end end hide-end">
+			<h2>Konec hry</h2>
+			<div class="result js-result"></div>
+		</div>
+
+
+		<button class="check js-check">Check</button>
+
+		<div class="nad-picker js-nad-picker">
+			<div class="picker js-picker"></div>
+		</div>
+	
+	</div>
+
+	<script>
+
+		class Color {
+			colorResult = [
+				{
+					color: 'white',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'prazdno',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'black',
+					width: '2rem',
+					height: '2rem'
+				}
+			]
+			colorChose = [
+				{
+					color: 'white',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'black',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'red',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'green',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'yellow',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'purple',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'blue',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'orange',
+					width: '2rem',
+					height: '2rem'
+				},{
+					color: 'pink',
+					width: '2rem',
+					height: '2rem'
+				}
+			]
+			
+		}
+
+		class ComputerChose extends Color{
+			numberOfDots = 5;
+			choosedColors = [];
+			computerChoceHTML = '';
+
+			zamichat() {
+				this.choosedColors = [];
+				this.computerChoceHTML = '';
+
+				let randomIndex = 1;
+
+				for (let i = 0; i < this.numberOfDots; i++) {
+				
+				while(randomIndex === 1) {
+					randomIndex = Math.floor(Math.random() * this.colorChose.length);
+				}
+						this.computerChoceHTML += 
+							`
+								<div class="tecka hide ${this.colorChose[randomIndex].color} js-${this.colorChose[randomIndex].color}"></div>
+							`;
+						this.choosedColors.push(randomIndex);
+			
+						randomIndex = 1
+					} 
+
+					this.computerChoceHTML += `<p class="find-colors js-find-colors">Find colors:</p>`;
+				
+				this.render();
+
+				document.querySelector('.js-check').classList.remove('hide');
+				document.querySelector('.js-nad-picker').classList.remove('hide');
+				document.querySelector('.js-end').classList.add("hide-end");
+
+				return this.computerChoceHTML;
+			}
+
+			render() {
+				document.querySelector('.js-computer-chose').innerHTML = this.computerChoceHTML;
+			}
+		}
+
+		class Player extends Color{
+			playerHTML = '';
+			colorPickerHTML = '';
+			playerChosePanel = [];
+			choosedColors = [];
+			result = [];
+			history = [];
+			historyHTML = "";
+			clickedPosition = 0;
+
+			init(choosedColors) {
+				// nastaveni pocatecnich hodnot promennych
+				this.playerHTML = '';
+				this.choosedColors = choosedColors.slice();
+				this.result = [];
+				this.playerChosePanel = [];
+				this.historyHTML = "";
+				this.history = [];
+				this.clickedPosition = 0;
+
+				choosedColors.forEach(() => {
+					this.playerChosePanel.push(0);
+					this.result.push('');
+				});
+
+				this.resultRender();
+				this.payerChosePositionHTML();
+				this.renderCheck();
+
+				// vyznaceni prvni pozice ve vyberu
+				this.playerChoseColorPickerHTML(this.choosedColors, 0);
+				document.querySelectorAll('.js-player-chose > div')[0].classList.add('clicked');
+			}
+
+			payerChosePositionHTML() {
+
+				this.playerHTML = '';
+
+				for (let index = 0; index < this.playerChosePanel.length; index++) {
+
+					this.playerHTML += 
+						`
+						<div class="tecka ${this.colorChose[this.playerChosePanel[index]] ? this.colorChose[this.playerChosePanel[index]].color : ''}"  
+							data-position="${index}">
+						</div>
+						`;
+				}
+
+				this.renderPosition();
+
+			}
+
+			playerChoseColorPickerHTML(choosedColors, position) {
+				this.colorPickerHTML = '';
+				for (let index = 0; index < this.colorChose.length; index++) {
+					if(this.colorChose[index].color !== 'prazdno') {
+						this.colorPickerHTML +=
+						`
+							<div class="tecka ${this.colorChose[index].color}" 
+								data-color-index="${index}" 
+								data-position="${position}">
+							</div>
+						`;
+					}
+						
+					}
+				this.renderColorPicker();
+			}
+
+			renderPosition() {
+				document.querySelector('.js-player-chose').innerHTML = this.playerHTML;
+
+				const elementy = document.querySelectorAll('.js-player-chose > div')
+
+					for (let index = 0; index < elementy.length; index++) {
+						const element = elementy[index];
+
+						element.addEventListener('click', () => {
+
+							elementy.forEach((element1) => {
+								element1.classList.remove('clicked');
+							});
+
+							this.clickedPosition = element.dataset.position;
+							elementy[this.clickedPosition].classList.add('clicked');
+
+							this.playerChoseColorPickerHTML(computerChose.choosedColors, this.clickedPosition)
+
+						});
+
+						// bez toho by pri vyberu barvy nastalo odebrani classy
+						elementy[this.clickedPosition].classList.add('clicked');
+					};
+			}
+
+			renderColorPicker() {
+				document.querySelector(`.js-picker`).innerHTML = this.colorPickerHTML;
+
+				document.querySelectorAll('.js-picker > div').forEach((element) => {
+					element.addEventListener('click', () => {
+						
+						const position = element.dataset.position;
+						const colorIndex = element.dataset.colorIndex;
+						this.playerChoseSave(position, colorIndex);
+					});
+				});
+			}
+
+			renderCheck() {
+				document.querySelector('.js-nad-history').innerHTML = this.historyHTML;
+			}
+			
+			playerChoseSave(position, colorIndex) {
+
+				this.playerChosePanel.splice(position,1,Number(colorIndex));
+
+				this.payerChosePositionHTML();
+			}
+
+			check() {
+
+				for (let index = 0; index < this.playerChosePanel.length; index++) {
+					const playerColorIndex = this.playerChosePanel[index];
+
+					if(this.choosedColors[index] == playerColorIndex) {
+							this.result.splice(index, 1, 2);
+							continue;
+						}
+
+					for (let index1 = 0; index1 < this.choosedColors.length; index1++) {
+						const colorIndex = this.choosedColors[index1];
+					
+						if(colorIndex == playerColorIndex && index != index1) {
+							this.result.splice(index, 1, 0);
+							break;
+						}else {
+							this.result.splice(index, 1, 1);
+						}
+					}
+				}
+
+				let sum = 0;
+				this.result.forEach((item) => {
+					sum += item;
+				});
+
+				if(sum / this.result.length === 2) {
+					// zobrazeni vylosovanych barev po uhodnuti
+						document.querySelectorAll('.tecka.hide').forEach((element) => {
+						element.classList.remove('hide');
+						// zmizeni napisu Find color
+						document.querySelector('.js-find-colors').classList.add('hide');
+						document.querySelector('.js-check').classList.add('hide');
+						document.querySelector('.js-nad-picker').classList.add('hide');
+						document.querySelector('.js-end').classList.remove("hide-end");
+					});
+					}
+
+				this.history.push(this.result.slice());
+				this.history.push(this.playerChosePanel.slice());
+				console.log(this.history);
+
+				let html = '<div class="history js-history">';
+				for (let index = 0; index < this.history.length; index++) {
+				
+					html += 
+						`
+							<div class="history-row">
+						`;
+
+						this.history[index].forEach((color) => {
+							if(index % 2 == 0) {
+								html += 
+								`
+									<div class="prouzek ${this.colorResult[color].color}"></div>
+								`; 
+							}else {
+								html += 
+								`
+									<div class="tecka ${this.colorChose[color].color}"></div>
+								`; 
+							}
+							
+						});
+
+					html += 
+						`
+							</div>
+						`;
+				};
+				html += 
+						`
+							</div>
+						`;
+
+				this.historyHTML = html;
+				this.resultRender();
+				this.renderCheck();
+			}
+
+			resultRender() {
+				document.querySelector('.js-result').innerHTML = 'Score: '+this.history.length / 2;
+			}
+		}
+
+		const computerChose = new ComputerChose;
+		const player = new Player;
+
+		computerChose.zamichat();
+		
+		player.init(computerChose.choosedColors)
+		// player.payerChosePositionHTML();
+
+
+		document.querySelector('.js-zamichat-button').addEventListener('click', () => {
+			computerChose.zamichat();
+			// player.choosedColors = computerChose.choosedColors.slice();
+			player.init(computerChose.choosedColors);
+	
+		});
+
+		document.querySelector('.js-check').addEventListener('click', () => {
+			player.check();
+			
+		});
+
+		
+
+	</script>
+</body>
+</html>
