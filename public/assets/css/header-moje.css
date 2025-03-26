@@ -1,0 +1,36 @@
+.header-img-moje {
+	background-image: url(../images/uvodnifoto.gif);
+	background-size: cover;
+
+}
+
+.text-shadow-moje {
+	color: white;
+	text-shadow: 0.15em 0.15em 0.15em black;
+}
+.text-shadow-moje-white {
+	text-shadow: 0.15em 0.15em 0.15em white;
+}
+
+.dflex-moje {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+body {
+	background-color: #c27819;
+}
+
+.header_font_moje {
+	font-size: 4vw;
+}
+
+@media(min-width: 430px) {
+	.header_font_moje {
+		font-size: 1rem;
+	}
+}
+
+
+

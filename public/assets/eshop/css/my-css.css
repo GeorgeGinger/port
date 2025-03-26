@@ -1,0 +1,48 @@
+/* XS Portrait */
+@media (max-width: 480px) {
+
+	.productinfo h2{
+		font-size: 4vw;
+	}
+	
+	.my_card {
+		padding: 1vw;
+	}
+
+	.add-to-cart {
+
+		font-size: 3vw;
+		margin-bottom: 10px;
+	}
+
+	.productinfo p {
+		font-size: 4vw;
+	}
+
+	.pagination li a {
+		padding: 2vw 2vw;
+	}
+
+
+}
+
+.pagination_wraper {
+	display: flex;
+	justify-content: center;
+}
+
+.product-image-wrapper {
+	margin-bottom: 0;
+}
+
+footer {
+	margin-top: 2vw;
+}
+
+.breadcrumbs .breadcrumb {
+    margin-bottom: 0px;
+}
+
+.form-one input {
+	width: 100%;
+}

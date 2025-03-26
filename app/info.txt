@@ -1,0 +1,20 @@
+- zjednodušeno bez country a city
+- změna databáze do orders se uklada cela adresa, mesto a zene, ulice
+- checkout upraven formular pridana input pro ulice, město zemi 
+- do signuo přidání příjmení
+- přidání udajů o uživately do checkout/pay
+- ujednoceni ajax souboru
+
+- vymazaní payment.php
+- pouziti phpmaileru v contactu
+- pridani funkce pro tcorbu qr kodu v core
+- checkout/payment zobrazuje qr code 
+- smazáni thank you
+- mazání obrázků při vymazání produktu
+
+- vymazaní sloupce category z tab products 
+- přidání tab product_category
+- mazani obrázků pokud mazu nebo edituji product nebo slider
+
+- odesílaní emailu s rekapitulaci objednávky 
+- email_temp.php v core
