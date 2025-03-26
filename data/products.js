@@ -73,7 +73,7 @@ class Appliance extends Product{
   }
 
   extraInfoHTML() {
-    // pokud bych chtel pouzit funkci z nadrezene classy se stejny jmenem
+    // pokud bych chtel pouzit funkci z nadrazene classy se stejny jmenem
     // super.extraInfoHTML()
     return `
       <a href="${this.instructionsLink}" target="_blank">
