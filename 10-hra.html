@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Function - hra</title>
+	
+	<link rel="stylesheet" href="./css/10-hra.css">
+
+	<style>
+		
+	</style>
+</head>
+<body>
+	<h3 class="title">Rock, Paper, Scissors</h3>
+
+	<button class="move-button" onclick="
+		playGame('rock');
+	">
+	<img class="move-icon" src="./images/rock-emoji.png" alt="">
+	</button>
+
+	<button class="move-button" onclick="
+		playGame('paper');
+	"><img class="move-icon" src="./images/paper-emoji.png" alt=""></button>
+
+	<button class="move-button" onclick="
+		playGame('scissors');
+	"><img class="move-icon" src="./images/scissors-emoji.png" alt=""></button>
+	<p class="js-result">Result:</p>
+	<p class="js-moves"></p>
+	<p class="js-score"></p>
+
+	<button onclick="newGame()">New game</button>
+
+	<script src="./js/10-hra.js"></script>
+</body>
+</html>
