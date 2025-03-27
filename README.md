@@ -6,3 +6,4 @@ Snažte se uhodnout barvy které byly vylosovány.
 * Nad barvou, která je ve vylosovaných barvách se objeví obdelník se zvýrazněným okrajem
 * Pokud trefíte barvu i umístění objeví se plný obdelník
 * Barvy se mohou opakovat
+* Dokud neuhodnete pořadí barev pokračujete ve hře
